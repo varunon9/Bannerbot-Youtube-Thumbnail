@@ -12,25 +12,18 @@ class ThumbnailImage extends StatelessWidget {
       required this.thumbnailData,
       required this.selectedImageIndex});
 
-  CustomTextSize getTextSize() {
-    int concatenatedTextLength = 0;
+  double getFontSize() {
+    // all texts will be of same size
     for (var text in thumbnailData.thumbnailTexts) {
-      concatenatedTextLength += text.value?.length ?? 0;
+      if (text.value != null) {
+        if (text.value!.length >= 12) {
+          return 16;
+        } else if (text.value!.length >= 8) {
+          return 18;
+        }
+      }
     }
-    if (concatenatedTextLength > 26) {
-      return CustomTextSize.medium;
-    }
-    return CustomTextSize.large;
-  }
-
-  double getFontSize(String text) {
-    if (text.length >= 12) {
-      return 16;
-    } else if (text.length >= 8) {
-      return 18;
-    } else {
-      return 20;
-    }
+    return 20;
   }
 
   List<Color> getBackgroundGradientColors() {
@@ -42,8 +35,8 @@ class ThumbnailImage extends StatelessWidget {
       ];
     } else if (selectedImageIndex == 1) {
       return [
-        getColorFromHex('#FFF3DB', null),
-        getColorFromHex('#FFD775', null)
+        getColorFromHex('#FFD700', null),
+        getColorFromHex('#B8860B', null)
       ];
     } else {
       /*return [
@@ -152,11 +145,10 @@ class ThumbnailImage extends StatelessWidget {
                           //color: getColorFromHex(item.backgroundColor, null),
                           color: getTextBackgroundColor(),
                           child: CustomText(
-                            item.value ?? '',
-                            //size: getTextSize(),
+                            item.value?.toUpperCase() ?? '',
                             style: TextStyle(
                                 //color: getColorFromHex(item.color, null),
-                                fontSize: getFontSize(item.value ?? ''),
+                                fontSize: getFontSize(),
                                 color: getTextColor(),
                                 fontWeight: FontWeight.w600),
                           ),
