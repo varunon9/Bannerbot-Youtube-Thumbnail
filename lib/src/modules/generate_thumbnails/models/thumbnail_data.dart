@@ -22,17 +22,24 @@ class ThumbnailText {
 class ImageData {
   String? imageUrl;
   int? id;
-  String? orientation; // horizontal / vertical / square / panoramic
+  String? imageOrientation; // horizontal / vertical / square / panoramic
   String? title;
+  String? imageSize;
 
-  ImageData({this.imageUrl, this.id, this.orientation, this.title});
+  ImageData(
+      {this.imageUrl,
+      this.id,
+      this.imageOrientation,
+      this.title,
+      this.imageSize});
 
   factory ImageData.fromJson(Map<String, dynamic> jsonData) {
     return (ImageData(
         imageUrl: jsonData['image_url'],
         id: jsonData['id'],
-        orientation: jsonData['image_orientation'],
-        title: jsonData['title']));
+        imageOrientation: jsonData['image_orientation'],
+        title: jsonData['title'],
+        imageSize: jsonData['image_size']));
   }
 }
 

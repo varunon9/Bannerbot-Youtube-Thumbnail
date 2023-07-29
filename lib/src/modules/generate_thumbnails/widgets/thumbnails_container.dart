@@ -39,6 +39,7 @@ class _ThumbnailsContainer extends State<ThumbnailsContainer> {
   @override
   Widget build(BuildContext context) {
     int decorationIndex = 0;
+    int imageIndex = 0;
     return (Column(
         children: thumbnails.isEmpty
             ? [
@@ -60,7 +61,9 @@ class _ThumbnailsContainer extends State<ThumbnailsContainer> {
                                         : CustomColors.lightText),
                           ),
                         ),
-                        child: ThumbnailImageContainer(thumbnailData: item)))
+                        child: ThumbnailImageContainer(
+                            thumbnailData: item,
+                            selectedImageIndex: imageIndex++)))
                     .toList()
               ]));
   }

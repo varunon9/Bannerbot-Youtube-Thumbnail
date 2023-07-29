@@ -10,8 +10,12 @@ import 'package:widgets_to_image/widgets_to_image.dart';
 
 class ThumbnailImageContainer extends StatefulWidget {
   final ThumbnailData thumbnailData;
+  final int selectedImageIndex;
 
-  const ThumbnailImageContainer({super.key, required this.thumbnailData});
+  const ThumbnailImageContainer(
+      {super.key,
+      required this.thumbnailData,
+      required this.selectedImageIndex});
 
   @override
   State<StatefulWidget> createState() => _ThumbnailImageContainer();
@@ -65,8 +69,8 @@ class _ThumbnailImageContainer extends State<ThumbnailImageContainer> {
 
   Widget getThumbnailImageComp() {
     return ThumbnailImage(
-      thumbnailData: widget.thumbnailData,
-    );
+        thumbnailData: widget.thumbnailData,
+        selectedImageIndex: widget.selectedImageIndex);
   }
 
   @override
