@@ -2,6 +2,20 @@
 
 Generate Youtube Thumbnails from Text
 
+### [Download it from PlayStore](https://play.google.com/store/apps/details?id=xyz.bannerbot&utm_source=Github)
+[![Android App](./screenshots/google-play.png)](https://play.google.com/store/apps/details?id=xyz.bannerbot&utm_source=Github)
+
+### Website
+
+https://www.bannerbot.xyz/
+
+## Screenshots
+|  |  |
+| --- | --- |
+|![Generating Youtube thumbnails](./screenshots/bannerbot-youtube-thumbnail.png) | ![Generating banners](./screenshots/bannerbot-main.png)|
+|![Edit image screen](./screenshots/bannerbot-edit-image.png) | ![Edit texts Screen](./screenshots/bannerbot-edit-texts.png)|
+
+
 
 ## Getting Started
 
