@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/models/thumbnail_data.dart';
-import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/widgets/thumbnail_image.dart';
+import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/widgets/thumbnail_image_container.dart';
 import 'package:bannerbot_youtube_thumbnail/src/utils/common.dart';
 import 'package:bannerbot_youtube_thumbnail/src/widgets/custom_colors.dart';
 import 'package:bannerbot_youtube_thumbnail/src/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class ThumbnailContainer extends StatefulWidget {
+class ThumbnailsContainer extends StatefulWidget {
   final String openAiResponse;
 
-  const ThumbnailContainer({super.key, required this.openAiResponse});
+  const ThumbnailsContainer({super.key, required this.openAiResponse});
 
   @override
-  State<StatefulWidget> createState() => _ThumbnailContainer();
+  State<StatefulWidget> createState() => _ThumbnailsContainer();
 }
 
-class _ThumbnailContainer extends State<ThumbnailContainer> {
+class _ThumbnailsContainer extends State<ThumbnailsContainer> {
   List<ThumbnailData> thumbnails = [];
 
   @override
@@ -60,7 +60,7 @@ class _ThumbnailContainer extends State<ThumbnailContainer> {
                                         : CustomColors.lightText),
                           ),
                         ),
-                        child: ThumbnailImage(thumbnailData: item)))
+                        child: ThumbnailImageContainer(thumbnailData: item)))
                     .toList()
               ]));
   }

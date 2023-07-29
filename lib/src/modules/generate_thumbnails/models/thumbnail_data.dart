@@ -1,5 +1,6 @@
 const List<String> defaultBackgroundImageKeywords = [];
 const List<ThumbnailText> defaultThumbnailTexts = [];
+const List<ImageData> defaultHumanImages = [];
 
 //enum HumanPosition { left, right, center }
 
@@ -18,29 +19,53 @@ class ThumbnailText {
   }
 }
 
+class ImageData {
+  String? imageUrl;
+  int? id;
+  String? orientation; // horizontal / vertical / square / panoramic
+  String? title;
+
+  ImageData({this.imageUrl, this.id, this.orientation, this.title});
+
+  factory ImageData.fromJson(Map<String, dynamic> jsonData) {
+    return (ImageData(
+        imageUrl: jsonData['image_url'],
+        id: jsonData['id'],
+        orientation: jsonData['image_orientation'],
+        title: jsonData['title']));
+  }
+}
+
 class ThumbnailData {
   String? backgroundImageUrl;
   List<String> backgroundImageKeywords;
   String? humanImageUrl;
   String? humanImageDescription;
-  String? humanPosition;
+  String? humanImagePosition;
   List<ThumbnailText> thumbnailTexts;
+  List<ImageData> humanImages;
 
   ThumbnailData(
       {this.backgroundImageUrl,
       this.backgroundImageKeywords = defaultBackgroundImageKeywords,
       this.humanImageUrl,
       this.humanImageDescription,
-      this.humanPosition,
-      this.thumbnailTexts = defaultThumbnailTexts});
+      this.humanImagePosition,
+      this.thumbnailTexts = defaultThumbnailTexts,
+      this.humanImages = defaultHumanImages});
 
   factory ThumbnailData.fromJson(Map<String, dynamic> jsonData) {
     List<String> backgroundImageKeywords =
         List<String>.from(jsonData['background_image_keywords']);
     List<ThumbnailText> thumbnailTexts = [];
+    List<ImageData> humanImages = [];
     List<dynamic> textsArr = jsonData['thumbnail_texts'];
     for (var element in textsArr) {
       thumbnailTexts.add(ThumbnailText.fromJson(element));
+    }
+    List<dynamic> humanImagesArr = jsonData['human_images'];
+    for (var element in humanImagesArr) {
+      humanImages.add(ImageData.fromJson(element));
     }
 
     return ThumbnailData(
@@ -48,8 +73,9 @@ class ThumbnailData {
         backgroundImageKeywords: backgroundImageKeywords,
         humanImageUrl: jsonData['human_image_url'] as String?,
         humanImageDescription: jsonData['human_image_description'] as String?,
-        humanPosition: jsonData['human_position'] as String?,
-        thumbnailTexts: thumbnailTexts);
+        humanImagePosition: jsonData['human_image_position'] as String?,
+        thumbnailTexts: thumbnailTexts,
+        humanImages: humanImages);
   }
 
   Map<String, dynamic> toJson() => {
@@ -57,8 +83,9 @@ class ThumbnailData {
         'background_image_keywords': backgroundImageKeywords,
         'human_image_url': humanImageUrl,
         'human_image_description': humanImageDescription,
-        'human_position': humanPosition,
-        'thumbnail_texts': thumbnailTexts
+        'human_position': humanImagePosition,
+        'thumbnail_texts': thumbnailTexts,
+        'human_images': humanImages
       };
 
   @override

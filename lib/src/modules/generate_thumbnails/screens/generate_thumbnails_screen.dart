@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:bannerbot_youtube_thumbnail/src/constants.dart';
 import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/generate_thumbnails_actions.dart';
 import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/models/chat_message.dart';
-import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/widgets/thumbnail_container.dart';
+import 'package:bannerbot_youtube_thumbnail/src/modules/generate_thumbnails/widgets/thumbnails_container.dart';
 import 'package:bannerbot_youtube_thumbnail/src/utils/common.dart';
 import 'package:bannerbot_youtube_thumbnail/src/widgets/bot_or_user_message_bubble.dart';
 import 'package:bannerbot_youtube_thumbnail/src/widgets/custom_colors.dart';
@@ -123,7 +123,7 @@ class _GenerateThumbnailsScreen extends State<GenerateThumbnailsScreen> {
                         : BotOrUserMessageBubble(
                             fromBot: fromBot,
                             child: fromBot && index != 0
-                                ? ThumbnailContainer(
+                                ? ThumbnailsContainer(
                                     openAiResponse: chatItem.content)
                                 : CustomText(chatItem.content),
                           ),

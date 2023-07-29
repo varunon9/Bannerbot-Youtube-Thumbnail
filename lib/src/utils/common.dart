@@ -60,3 +60,14 @@ Future<String> getExtStorageOrDownloadsDirPath() async {
     return downloadsDir?.path ?? documentsDir.path;
   }
 }
+
+// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
+Color getColorFromHex(String? hexString, Color? fallbackColor) {
+  if (hexString == null || hexString == '') {
+    return fallbackColor ?? Colors.white;
+  }
+  final buffer = StringBuffer();
+  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+  buffer.write(hexString.replaceFirst('#', ''));
+  return Color(int.parse(buffer.toString(), radix: 16));
+}
